@@ -26,9 +26,33 @@
 <h1>Solvespace</h1>
 <p><img caption="false" height="293" src="/images/solvespace_7N5L79EmgW.png" width="500"/></p>
 <h2>Solvespace編譯</h2>
-<p>編譯影片</p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/he-kYubE2Fs" width="560"></iframe></p>
-<h2>Solvespace操作</h2>
+<h4>編譯步驟:</h4>
+<p>先將 Y:\portablegit\bin\sh.exe 改名為 sh_rename_for_solvespace.exe (透過 MSYS2 執行 shell 指令, 而非 portablegit 中的 sh.exe)</p>
+<p>git version 查驗 git 版本</p>
+<p>git 2.13 版本以上, 可以使用下列 git clone<span> </span><span>--recurse-submodules 取得所有子模組資料</span></p>
+<p>git clone --recurse-submodules https://github.com/solvespace/solvespace.git solvespace</p>
+<p>上述指令同:</p>
+<p>git clone <span><a href="https://github.com/solvespace/solvespace.git">https://github.com/solvespace/solvespace.git</a> </span></p>
+<p><span>cd solvespace</span></p>
+<p><span>git submodule init</span></p>
+<p><span>git submodule update</span></p>
+<p>edit Y:\tmp\solvespace\extlib\angle\CMakeLists.txt comment out line 713 and 714</p>
+<p>#list(APPEND ANGLE_DEFINITIONS<br/>#"-DANGLE_PRELOADED_D3DCOMPILER_MODULE_NAMES={ \"d3dcompiler_47.dll\", \"d3dcompiler_46.dll\", \"d3dcompiler_43.dll\" }")<br/>endif()</p>
+<p>接著需要手動進行 libpng.dll.a 的編譯, 並改名為 libpng_static.a, 並放到編譯系統的 lib 目錄中 (即隨身系統的 msys64\mingw64\lib 目錄):</p>
+<p>cd solvespace</p>
+<p>cd extlib</p>
+<p>cd libpng</p>
+<p>mkdir build</p>
+<p>cd build</p>
+<p>cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release<br/>mingw32-make</p>
+<p>(mingw32-make -Wl,-static)</p>
+<p>rename libpng.dll.a to libpng_static.a and copy to Y:\msys64\mingw64\lib</p>
+<p>接著回到 solvespace 原始碼目錄, 建立 build 目錄後進入 build 目錄, 執行:</p>
+<p><span>cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release</span><br/><span>mingw32-make</span></p>
+<h4><strong>編譯影片:</strong></h4>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/eGKps_pklxc" width="560"></iframe></p>
+<h4><strong>對 About 新增學號</strong></h4>
+<p><strong><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/2IEFfRoR1wA" width="560"></iframe></strong></p><h2>Solvespace操作</h2>
 <p><yt-formatted-string class="style-scope ytd-video-primary-info-renderer" force-default-style="">tutorial_1_simple_plate</yt-formatted-string></p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/m_L7Suz77rM" width="560"></iframe></p>
 <p><yt-formatted-string class="style-scope ytd-video-primary-info-renderer" force-default-style="">Solvespace_tutorial_10_Fidget Spinner</yt-formatted-string></p>
