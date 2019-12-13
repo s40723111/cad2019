@@ -1,64 +1,155 @@
-<h1>About</h1>
-<p>此內容管理系統以 <a href="https://github.com/mdecourse/cmsimde">https://github.com/mdecourse/cmsimde</a> 作為 submodule 運作, 可以選定對應的版本運作, cmsimde 可以持續改版, 不會影響之前設為 submodule, 使用舊版 cmsimde 模組的內容管理相關運作.</p>
-<h4>利用 cmsimde 建立靜態網誌方法:</h4>
-<p>1. 在 github 建立倉儲, git clone 到近端</p>
-<p>2. 參考 <a href="https://github.com/mdecourse/newcms">https://github.com/mdecourse/newcms</a>, 加入除了 cmsimde 目錄外的所有內容</p>
-<p>以 git submodule add <a href="https://github.com/mdecourse/cmsimde">https://github.com/mdecourse/cmsimde</a> cmsimde</p>
-<p>建立 cmsimde 目錄, 並從 github 取下子模組內容.</p>
-<p>3.在近端維護時, 更換目錄到倉儲中的 cmsimde, 以 python wsgi.py 啟動近端網際伺服器.</p>
-<p>動態內容編輯完成後, 以 generate_pages 轉為靜態內容, 以 git add commit 及 push 將內容推到遠端.</p>
-<p>4. 之後若要以 git clone 取下包含 submodule 的所有內容, 執行:</p>
-<p>git clone --recurse-submodules <a href="https://github.com/mdecourse/newcms.git">https://github.com/mdecourse/newcms.git</a></p>
-<h1>Develop</h1>
-<p><a href="https://github.com/mdecourse/cmsimde">https://github.com/mdecourse/cmsimde</a> 的開發, 可以在一個目錄中放入 cmsimde, 然後將 up_dir 中的內容放到與 cmsimde 目錄同位階的地方, 使用 command 進入 cmsimde 目錄, 執行 python wsgi.py, 就可以啟動, 以瀏覽器 https://localhost:9443 就可以連接, 以 admin 作為管理者密碼, 就可以登入維護內容.</p>
-<p>cmsimde 的開發採用 Leo Editor, 開啟 cmsimde 目錄中的 cmsimde.leo 就可以進行程式修改, 結束後, 若要保留網際內容, 只要將 cmsimde 外部的內容倒回 up_dir 目錄中即可後續對 cmsimde 遠端倉儲進行改版.</p>
-<p>init.py 位於  up_dir 目錄, 可以設定 site_title 與 uwsgi 等變數.</p>
-<h1>Solvespace</h1>
-<p><img caption="false" height="293" src="/images/solvespace_7N5L79EmgW.png" width="500"/></p>
-<h2>Solvespace編譯</h2>
-<h4>編譯步驟:</h4>
-<p>先將 Y:\portablegit\bin\sh.exe 改名為 sh_rename_for_solvespace.exe (透過 MSYS2 執行 shell 指令, 而非 portablegit 中的 sh.exe)</p>
-<p>git version 查驗 git 版本</p>
-<p>git 2.13 版本以上, 可以使用下列 git clone<span> </span><span>--recurse-submodules 取得所有子模組資料</span></p>
-<p>git clone --recurse-submodules https://github.com/solvespace/solvespace.git solvespace</p>
-<p>上述指令同:</p>
-<p>git clone <span><a href="https://github.com/solvespace/solvespace.git">https://github.com/solvespace/solvespace.git</a> </span></p>
-<p><span>cd solvespace</span></p>
-<p><span>git submodule init</span></p>
-<p><span>git submodule update</span></p>
-<p>edit Y:\tmp\solvespace\extlib\angle\CMakeLists.txt comment out line 713 and 714</p>
-<p>#list(APPEND ANGLE_DEFINITIONS<br/>#"-DANGLE_PRELOADED_D3DCOMPILER_MODULE_NAMES={ \"d3dcompiler_47.dll\", \"d3dcompiler_46.dll\", \"d3dcompiler_43.dll\" }")<br/>endif()</p>
-<p>接著需要手動進行 libpng.dll.a 的編譯, 並改名為 libpng_static.a, 並放到編譯系統的 lib 目錄中 (即隨身系統的 msys64\mingw64\lib 目錄):</p>
-<p>cd solvespace</p>
-<p>cd extlib</p>
-<p>cd libpng</p>
-<p>mkdir build</p>
-<p>cd build</p>
-<p>cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release<br/>mingw32-make</p>
-<p>(mingw32-make -Wl,-static)</p>
-<p>rename libpng.dll.a to libpng_static.a and copy to Y:\msys64\mingw64\lib</p>
-<p>接著回到 solvespace 原始碼目錄, 建立 build 目錄後進入 build 目錄, 執行:</p>
-<p><span>cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release</span><br/><span>mingw32-make</span></p>
-<h4><strong>編譯影片:</strong></h4>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/eGKps_pklxc" width="560"></iframe></p>
-<h4><strong>對 About 新增學號</strong></h4>
-<p><strong><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/2IEFfRoR1wA" width="560"></iframe></strong></p>
-<h2>Solvespace 操作</h2>
-<p><yt-formatted-string class="style-scope ytd-video-primary-info-renderer" force-default-style="">tutorial_1_simple_plate</yt-formatted-string></p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/m_L7Suz77rM" width="560"></iframe></p>
-<p><yt-formatted-string class="style-scope ytd-video-primary-info-renderer" force-default-style="">Solvespace_tutorial_10_Fidget Spinner</yt-formatted-string></p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/cMQQ4rD_YRY" width="560"></iframe></p>
-<p><yt-formatted-string class="style-scope ytd-video-primary-info-renderer" force-default-style="">Solvespace_tutorial_5_a more Complex Model</yt-formatted-string></p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/zCGpQ22g9MY" width="560"></iframe></p>
-<h1>V-rep</h1>
-<h2>雙輪車控制模擬</h2>
-<h4 class="title style-scope ytd-video-primary-info-renderer"><yt-formatted-string class="style-scope ytd-video-primary-info-renderer" force-default-style="">Python remote API 雙輪車控制模擬</yt-formatted-string></h4>
-<p>目前為近端操控，未來的目標是希望在遠端裝置上執行</p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/XKvrybYpZ_A" width="560"></iframe></p>
-<h1>繪圖認證範例</h1>
-<p><a href="http://mde.tw/cad2019/content/CAD2CAE.html">http://mde.tw/cad2019/content/CAD2CAE.html</a>挑選進行繪圖驗證</p>
-<p><br/><br/><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/3CUc2zFI-aw" width="560"></iframe></p>
-<h1>NX12翻譯</h1>
+<!DOCTYPE html><html>
+        <head>
+        <title>CMSiMDE</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/magnific-popup.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/jquery-ui.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/aos.css">
+        <link rel="stylesheet" href="./../cmsimde/static/chimper/css/style.css">
+        <link rel="shortcut icon" href="./../cmsimde/static/favicons.png">
+        
+        <style type='text/css'>
+            .site-section {
+            background-color: #FFFF;
+            padding: 40px 40px;
+            }
+            body > div > div.dropdown.open {
+                display: block;
+            }
+        </style>
+    
+        <!-- <script src="./../cmsimde/static/jquery.js"></script> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        <script src="../cmsimde/static/chimper/js/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="./../cmsimde/static/tipuesearch/css/normalize.min.css">
+        <script src="./../cmsimde/static/tipuesearch/tipuesearch_set.js"></script>
+        <script src="tipuesearch_content.js"></script>
+        <link rel="stylesheet" href="./../cmsimde/static/tipuesearch/css/tipuesearch.css">
+        <script src="./../cmsimde/static/tipuesearch/tipuesearch.js"></script>
+        <script>
+            /* original tipuesearch
+            $(document).ready(function() {
+                 $('#tipue_search_input').tipuesearch();
+            });
+            */
+            // customed doSearch
+            function doSearch() {
+                $('#tipue_search_input').tipuesearch({
+                    newWindow: true, 
+                    minimumLength: 2,
+                    wholeWords: false, // for search 中文
+                });
+            }
+            $(document).ready(doSearch);
+        </script>
+        
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shCore.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushJava.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPython.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushSql.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushHaxe.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushXml.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushPhp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushLua.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCpp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCss.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/syntaxhighlighter/shBrushDart.js"></script>
+<link type="text/css" rel="stylesheet" href="./../cmsimde/static/syntaxhighlighter/css/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- for LaTeX equations 暫時不用
+<script src="https://scrum-3.github.io/web/math/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+-->
+<!-- 暫時不用
+<script src="./../cmsimde/static/fengari-web.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/Cango-13v08-min.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/CangoAxes-4v01-min.js"></script>
+<script type="text/javascript" src="./../cmsimde/static/gearUtils-05.js"></script>
+-->
+<!-- for Brython 暫時不用
+<script src="https://scrum-3.github.io/web/brython/brython.js"></script>
+<script src="https://scrum-3.github.io/web/brython/brython_stdlib.js"></script>
+-->
+
+</head>
+<body>
+<div class='container'><nav>
+        
+    <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+            <header class="site-navbar py-4 bg-white" role="banner">
+              <div class="container-fluid">
+                <div class="row align-items-center">
+                <h1>cad2019 40723111</h1>
+                <div class="pl-4">
+                    <form>
+                    <input type="text" placeholder="Search" name="q" id="tipue_search_input" pattern=".{2,}" title="At least 2 characters" required>
+                    </form>
+                </div>
+                  <!-- <div class="col-11 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">cad2019 40723111</a></h1> 
+                  </div>
+                  -->
+                  <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+    <ul class='site-menu js-clone-nav mr-auto d-none d-lg-block'>
+                        <li class="active has-children"><a href="index.html">Home</a>
+                        <ul class="dropdown">
+                            <li><a href="sitemap.html">Site Map</a></li>
+                            <li><a href="./../reveal/index.html">reveal</a></li>
+                            <li><a href="./../blog/index.html">blog</a></li>
+                        </ul>
+                      </li>
+                     <li><a href='About.html'>About</a><li><a href='Develop.html'>Develop</a><li class='has-children'><a href='Solvespace.html'>Solvespace</a><ul class='dropdown'><li><a href='Solvespace編譯.html'>Solvespace編譯</a><li><a href='Solvespace 操作.html'>Solvespace 操作</a></li></ul><li class='has-children'><a href='V-rep.html'>V-rep</a><ul class='dropdown'><li><a href='雙輪車控制模擬.html'>雙輪車控制模擬</a></li></ul><li><a href='繪圖認證範例.html'>繪圖認證範例</a><li><a href='NX12翻譯.html'>NX12翻譯</a><li><a href='NX12繪製自走車.html'>NX12繪製自走車</a></li>
+                      </ul>
+                </nav>
+              </div>
+              <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+              </div>
+
+            </div>
+          </div>
+          
+        </header>
+    <div id="tipue_search_content">繪圖認證範例 << <a href='繪圖認證範例.html'>Previous</a> <a href='NX12繪製自走車.html'>Next</a> >> NX12繪製自走車<br /><h1>NX12翻譯</h1>
 <p>第<span>2</span>章<span>-</span>入門</p>
 <p>首先開始<span>NX 12</span>會話。 本章將提供使用所需的基礎知識</p>
 <p>任何<span>CAD / CAM</span>軟體包。 您將學習開始，理解和使用</p>
@@ -68,7 +159,7 @@
 <p><span>2.1</span>啟動<span>NX 12</span>會話並打開文件</p>
 <p><span>2.1.1</span>開始<span>NX 12</span>會話</p>
 <p>在<span>Windows</span>桌面屏幕上，單擊開始→程序列表→<span>Siemens NX 12</span>→<span>NX 12</span></p>
-<p><span><img alt="" height="516" src="/images/1.png" width="225"/></span></p>
+<p><span><img alt="" height="516" src="./../images/1.png" width="225"/></span></p>
 <p><span>NX 12</span>主螢幕將打開。 這是<span>NX 12</span>軟體的閘道器。<span> NX 12</span>空白</p>
 <p>屏幕看起來如下圖所示。 屏幕上將顯示一些提示，關於</p>
 <p>當前版本的特殊功能。 閘道器還具有標準工具欄，它將</p>
@@ -76,7 +167,7 @@
 <p>是一個稱為“資源欄”的工具欄，它具有與不同模塊相關的菜單，並且能夠</p>
 <p>定義和更改軟體的角色，查看軟體使用的歷史記錄等。 這會</p>
 <p>將在本章稍後詳細解釋。</p>
-<p><img alt="" height="246" src="/images/2.png" width="400"/></p>
+<p><img alt="" height="246" src="./../images/2.png" width="400"/></p>
 <p><span>2.1.2</span>打開一個新文件</p>
 <p>首先，我們學習如何在<span>NX 12</span>中打開新零件文件。要創建新文件，請執行以下三個操作選項。</p>
 <p>單擊螢幕頂端的“新建”按鈕</p>
@@ -89,16 +180,16 @@
 <p>指定工作環境的單位（英寸或毫米）以及名稱和位置</p>
 <p>文件。 默認單位是毫米。</p>
 <p>輸入文件的適當名稱和位置，然後點擊“確定”。</p>
-<p><img alt="" height="314" src="/images/3.png" width="400"/></p>
+<p><img alt="" height="314" src="./../images/3.png" width="400"/></p>
 <p><span>2.1.3</span>打開零件文件</p>
 <p>有幾種打開現有文件的方法。</p>
 <p>點擊螢幕頂端的打開或打開最近的零件按鈕要么</p>
 <p>瀏覽屏幕左上方的<span>File</span>（文件）下拉菜單，然後單擊<span>Open</span>（打開）。</p>
 <p>或按<span>&lt;Ctrl&gt; + O</span>將顯示“打開零件文件”對話框。 您可以在右側查看文件預覽</p>
 <p>窗口。 您可以通過取消單擊“預覽”按鈕前面的框來禁用“預覽”點擊取消退出窗口</p>
-<p><img alt="" height="288" src="/images/4.png" width="400"/></p>
+<p><img alt="" height="288" src="./../images/4.png" width="400"/></p>
 <p><span>2.2列印，保存和關閉文件</span></p>
-<p><span>2.2.1列</span>印<span>NX 12</span>圖像要從當前顯示器打印圖像，點擊文件→打印 <img alt="" height="467" src="/images/5.png" width="189"/> </p>
+<p><span>2.2.1列</span>印<span>NX 12</span>圖像要從當前顯示器打印圖像，點擊文件→打印 <img alt="" height="467" src="./../images/5.png" width="189"/> </p>
 <p>下圖顯示了“打印”對話框。 這裡，</p>
 <p>您可以選擇要使用的打印機或指定編號</p>
 <p>打印份數，紙張尺寸等。</p>
@@ -120,7 +211,7 @@
 <p>全部保存：此選項將保存所有打開的零件文件及其現有名稱。</p>
 <p>保存書籤：此選項會將螢幕截圖和當前模型的上下文保存在螢幕上</p>
 <p>作為<span>.JPEG</span>文件和書籤。</p>
-<p><img alt="" height="371" src="/images/6.png" width="400"/></p>
+<p><img alt="" height="371" src="./../images/6.png" width="400"/></p>
 <p><span>2.2.3</span>關閉零件文件</p>
 <p>您可以選擇關閉零件在螢幕上可看見點擊文件→關閉</p>
 <p>如果您關閉文件，該文件將從以下位置清除</p>
@@ -128,10 +219,10 @@
 <p>選擇“保存並關閉”，“另存並關閉”，</p>
 <p>保存所有並關閉或保存所有並退出。 在在前三個選項的情況下，</p>
 <p>已選擇，否則所有零件都將關閉，但<span>NX 12</span>會話繼續運行。</p>
-<p><img alt="" height="301" src="/images/7.png" width="300"/></p>
+<p><img alt="" height="301" src="./../images/7.png" width="300"/></p>
 <p><span>2.2.4</span>退出<span>NX 12</span>會話</p>
 <p>點擊文件→退出</p>
-<p><img alt="" height="99" src="/images/8.png" width="300"/></p>
+<p><img alt="" height="99" src="./../images/8.png" width="300"/></p>
 <p>如果您打開了文件並在未保存的情況下進行了更改，則消息將詢問您是否</p>
 <p>真的想退出。選擇否，保存文件，然後退出</p>
 <p><span>. NX 12</span>接口</p>
@@ -144,7 +235,7 @@
 <p>和圖形屏幕上的其他實體。 在任何功能上雙擊<span>MB1</span>都會自動</p>
 <p>打開“編輯對話框”。 單擊對像上的<span>MB1</span>，使用戶可以快速訪問</p>
 <p>如下所示的幾個選項。 這些選項將在下一章中討論。</p>
-<p><img alt="" height="216" src="/images/9.png" width="250"/></p>
+<p><img alt="" height="216" src="./../images/9.png" width="250"/></p>
 <p><span>2.3.1.2</span>滑鼠中鍵（<span>MB2</span>）</p>
 <p>滑鼠中鍵（<span>MB2</span>）或滾動按鈕用於通過按下來旋轉對象，</p>
 <p>按住並拖動。 模型也可以繞單個軸旋轉。 繞軸旋轉</p>
@@ -155,27 +246,27 @@
 <p>您可以在對象周圍拖動以查看。</p>
 <p>如果是滾動按鈕，則可以通過滾動對象來放大和縮小。 單擊<span>MB2</span>將</p>
 <p>如果打開了任何彈出窗口或對話框，還可以執行“確定”命令</p>
-<p><img alt="" height="176" src="/images/10.png" width="282"/></p>
+<p><img alt="" height="176" src="./../images/10.png" width="282"/></p>
 <p><span>2.3.1.3</span>鼠標右鍵（<span>MB3</span>）</p>
 <p><span>MB3</span>或滑鼠右鍵用於訪問用戶界面彈出窗口菜單。 您可以訪問後續彈出的選項取決於選擇模式和應用。 的下圖顯示在草圖中應用。單擊<span>MB3</span>時選擇功能將提供選項與該功能有關（對象<span>/</span>動作菜單）。</p>
-<p><img alt="" height="342" src="/images/11.png" width="350"/></p>
+<p><img alt="" height="342" src="./../images/11.png" width="350"/></p>
 <p>單擊<span>MB3</span>並按住按鈕將在功能周圍顯示一組圖標。這些圖標具有可應用於功能的可能命令</p>
-<p><img alt="" height="88" src="/images/12.png" width="80"/></p>
+<p><img alt="" height="88" src="./../images/12.png" width="80"/></p>
 <p><span>2.3.1.4</span>按鈕組合</p>
 <p>放大<span>/</span>縮小：</p>
 <p>同時按住<span>MB1</span>和<span>MB2</span>並拖動</p>
 <p>按住鍵盤上的<span>&lt;Ctrl&gt;</span>按鈕，然後按住並拖動<span>MB2</span></p>
-<p><span><img alt="" height="179" src="/images/13.png" width="257"/></span></p>
+<p><span><img alt="" height="179" src="./../images/13.png" width="257"/></span></p>
 <p>同時按住<span>MB2</span>和<span>MB3</span>並拖動</p>
 <p>要按住鍵盤上的<span>&lt;Shift&gt;</span>按鈕並按住<span>MB2</span></p>
-<p><span><img alt="" height="174" src="/images/14.png" width="273"/></span></p>
+<p><span><img alt="" height="174" src="./../images/14.png" width="273"/></span></p>
 <p>菜單快捷方式：</p>
 <p>➢按住<span>&lt;Ctrl&gt; + &lt;Shift&gt;</span>和<span>MB1</span>，<span>MB2</span>和<span>MB3</span>可以看到功能的快捷方式，</p>
 <p>直接草圖組和同步建模組</p>
 <p><span>2.3.2 NX 12</span>網關</p>
 <p>下圖顯示了打開文件時<span>NX 12</span>窗口的典型佈局。 這是<span>NX 12</span>的閘道器可以選擇要處理的任何模塊，例如建模，必須注意這些工具欄可能不完全在同一位置</p>
 <p>如下圖所示。 工具欄可以放置在屏幕上的任何位置或位置。查找相同的圖標集。</p>
-<p><img caption="false" height="386" src="/images/15.png" width="500"/></p>
+<p><img caption="false" height="386" src="./../images/15.png" width="500"/></p>
 <p><span>2.3.2.1</span>功能區欄</p>
 <p>功能區界面使用戶能夠輕鬆訪問不同的命令，而無縮小圖形窗口區域。命令組織在不同選項卡下的功能區欄中和組，以便於識別和訪問。</p>
 <p>例如，在上圖所示的功能區欄中，我們具有“開始”，“曲線”等選項。在裡面</p>
@@ -184,21 +275,21 @@
 <p><span>2.3.2.2</span>快速訪問工具欄</p>
 <p>快速訪問工具欄具有最常用的按鈕（保存，復原，重做，剪切，複製，貼上和</p>
 <p>最近的命令）以加快建模過程。 您可以輕鬆地將這些按鈕自定義為如下圖所示</p>
-<p><img alt="" height="387" src="/images/16.png" width="352"/></p>
+<p><img alt="" height="387" src="./../images/16.png" width="352"/></p>
 <p><span>2.3.2.3</span>命令查找器</p>
 <p>如果您不知道在哪裡可以找到命令，請使用“命令查找器”。 假設我們忘記了</p>
 <p>樣式掃描的位置。</p>
 <p>在命令查找器中輸入掃描將游標懸停在樣式掃描上</p>
 <p><span>NX</span>將顯示命令路徑：菜單→插入→掃描→樣式化掃描</p>
 <p>或是在命令查找器中輸入掃描在“命令查找器”窗口中單擊樣式化掃描</p>
-<p><img alt="" height="297" src="/images/17.png" width="500"/></p>
+<p><img alt="" height="297" src="./../images/17.png" width="500"/></p>
 <p><span>2.3.2.4</span>上邊界</p>
 <p>頂部邊框中最重要的按鈕是菜單按鈕。 大部分功能菜單中提供了該軟件的版本。 選擇欄顯示選擇選項。 這些選項包括用於選擇特徵的“過濾器”，“零部件<span>/</span>裝配體”和“捕捉點”。 “視圖”選項中的常用按鈕也顯示在“頂部邊框”中。</p>
 <p><span>2.3.2.5</span>資源欄</p>
 <p>資源欄使用很少的用戶界面就可以在一處顯示多個頁面的圖標空間。<span> NX 12</span>將所有導航器窗口（裝配體，約束和零件）放置在資源欄中，以及重用庫，<span>HD3D</span>工具，網頁瀏覽器，歷史記錄面板，<span>Process Studio</span>，製造嚮導，角色和系統場景。 兩個最重要的寡婦是解釋如下</p>
 <p>零件導航器</p>
 <p>單擊零件瀏覽器圖標，第三個資源欄頂部的圖標</p>
-<p><img alt="" height="465" src="/images/18.png" width="292"/></p>
+<p><img alt="" height="465" src="./../images/18.png" width="292"/></p>
 <p>零件導航器提供可視化表示要素中的父子關係以樹型格式在單獨的窗口中工作。它顯示了在此期間使用的所有原語，實體造型。 它允許您執行各種編輯這些功能上的操作。 例如，您可以使用零件導航器來抑製或取消抑制功能或更改其參數或位置尺寸。 刪除綠色的勾號將“取消”功能。 該軟體會給警告如果父子關係被打破取消任何特定功能。</p>
 <p>零件瀏覽器可用於所有<span>NX</span>應用程序而不僅僅是建模。 但是，您只能執行功能編輯操作當您在“建模”模塊中時。 在零件瀏覽器中編輯特徵將自動更新模型。 特徵編輯將在後面討論。</p>
 <p>歷史</p>
@@ -207,24 +298,24 @@
 <p><span>2.3.2.6</span>提示線</p>
 <p>提示行顯示提示消息，指示接下來需要採取的行動。 在<span> - </span>的右邊提示行，狀態行位於顯示有關當前選項的消息或最近完成的功能。進度表顯示在提示行中</p>
 <p>當系統執行耗時的操作，例如下載大型裝配體。 的儀表顯示的操作百分比完成了。 操作完成後，系統顯示下一個適當的提示。</p>
-<p><img alt="" height="559" src="/images/19.png" width="284"/></p>
+<p><img alt="" height="559" src="./../images/19.png" width="284"/></p>
 <p><span>2.3.3</span>幾何選擇</p>
 <p>您可以過濾選擇方法，這有助於在緊密的簇中輕鬆選擇幾何。 在此外，您可以執行任何功能<span>NX 12</span>智能提供的操作選項取決於所選實體。 項目的選擇可以基於實體的程度，例如選擇幾何實體，特徵和零部件。 選擇方法可以選擇</p>
 <p>選擇選擇工具欄中的圖標之一。</p>
 <p><span>2.3.3.1</span>特徵選擇</p>
 <p>點任何圖標，可以選擇零件文件中的特徵。 它不會選擇基本實體，例如邊緣面等。選定的特徵也可以應用於一部分或整個根據要求組裝。</p>
-<p><img alt="" height="65" src="/images/20.png" width="500"/></p>
+<p><img alt="" height="65" src="./../images/20.png" width="500"/></p>
 <p>除此之外，可以進一步縮小特徵的過濾範圍在下拉菜單中選擇所需選項之一，如數字。 例如，選擇“曲線”將僅高亮顯示屏幕。 默認值為“無選擇過濾器”。</p>
-<p><img alt="" height="223" src="/images/21.png" width="130"/></p>
+<p><img alt="" height="223" src="./../images/21.png" width="130"/></p>
 <p><span>2.3.3.2</span>常規對象選擇</p>
 <p>將鼠標光標導航到實體附近，直到用突出顯示它為止洋紅色，然後單擊滑鼠左鍵以選擇任何幾何實體，功能或組件。</p>
-<p><img alt="" height="132" src="/images/22.png" width="134"/></p>
+<p><img alt="" height="132" src="./../images/22.png" width="134"/></p>
 <p>如果要選擇隱藏在顯示的幾何圖形後面的實體，將滑鼠光標放在屏幕上該區域附近，以便光標球佔據了投影在屏幕上的隱藏幾何的一部分屏幕。幾秒鐘後，球形光標變為加號如圖所示。單擊鼠標左鍵（<span>MB1</span>）以獲取選擇確認對話框，如下圖如下。這個<span>QuickPick</span>菜單由實體列表組成捕獲在光標的球內的實體按以下升序排列實體的程度。例如，邊和頂點指定為較低給出實心面的數字更高的數字。通過移動光標顯示的數字，<span>NX 12</span>將用洋紅色突出顯示屏幕上的相應實體。</p>
-<p><span> <img alt="" height="248" src="/images/23.png" width="347"/></span></p>
+<p><span> <img alt="" height="248" src="./../images/23.png" width="347"/></span></p>
 <p><span>2.3.4</span>用戶首選項</p>
 <p>在菜單按鈕（位於主窗口左上角）中選擇首選項以查找各種可用選項用戶首選項用於定義以下內容的顯示參數：新對象，名稱，佈局和視圖。 您可以設置圖層，創建對象的顏色，字體和寬度。 您也可以設計佈局和視圖，控制對象和視圖的顯示名稱和邊框，更改選擇球的大小，指定選擇矩形方法，設置鏈接公差和方法，以及設計和激活網格。 改變你使用“首選項”菜單進行覆蓋</p>
 <p>客戶默認使用相同功能</p>
-<p><img alt="" height="552" src="/images/24.png" width="223"/></p>
+<p><img alt="" height="552" src="./../images/24.png" width="223"/></p>
 <p><span>2.3.4.1</span>用戶界面</p>
 <p>選擇首選項→用戶界面以找到對話框中的選項用戶界面選項可自定義<span>NX</span>的工作方式以及與您設置的規范進行交互。 您可以控制主窗口的位置，大小和可見性狀態，圖形顯示和信息窗口。 您可以設置系統用於的小數位數（精度）信息中顯示的輸入文本字段和數據窗口。 您還可以為文件指定完整或小型對話框選擇。 您還可以設置宏選項並啟用撤消操作的確認對話框。</p>
 <ul>
@@ -234,22 +325,22 @@
 <li>工具中的日誌選項卡允許您使用多種編程語言</li>
 <li>工具中的“巨集”選項卡允許您設置顯示動畫時的暫停</li>
 </ul>
-<p><span><img alt="" height="320" src="/images/25.png" width="403"/></span></p>
+<p><span><img alt="" height="320" src="./../images/25.png" width="403"/></span></p>
 <p><span>2.3.4.2</span>可視化</p>
 <p>➢選擇首選項→可視化以找到對話框中的選項</p>
-<p><img alt="" height="497" src="/images/26.png" width="244"/></p>
+<p><img alt="" height="497" src="./../images/26.png" width="244"/></p>
 <p>該對話框控制會影響顯示的屬性圖形窗口。一些屬性與零件或零件的特定視圖的設置這些屬性保存在零件文件中。 對於其中許多屬性，當創建新零件或視圖時，該設置初始化為客戶默認文件。 其他屬性與會話和適用於會話中的所有部分。一些設置這些屬性在每個會話中保存在註冊表。 對於某些會話屬性，設置可以為初始化為客戶默認值默認文件的一個環境變量。</p>
 <p>➢選擇“首選項”→“調色板”以查找對話框中的選項</p>
 <p>➢點擊首選項→在背景獲取另一個彈出對話框。</p>
-<p><img alt="" height="299" src="/images/27.png" width="272"/></p>
+<p><img alt="" height="299" src="./../images/27.png" width="272"/></p>
 <p>你可以改變您想要的背景色背景色是指圖形窗口的背景。<span> NX</span>支持所有顯示模式的漸變背景。 您可以選擇陰影或線框的背景顏色顯示。 背景可以是純色或漸變色。所有背景顏色的有效選項是<span>0</span>到<span>255</span>。</p>
 <p>您可以更改並觀察顏色和物體的半透明</p>
 <p>➢單擊首選項→對象</p>
-<p><img alt="" height="337" src="/images/28.png" width="275"/></p>
+<p><img alt="" height="337" src="./../images/28.png" width="275"/></p>
 <p>這將彈出一個對話框窗口“對象首選項”。您也可以將此設置應用於以下對象的單個實體。 例如，您可以單擊任何特定的實體的表面並應用“顯示”設置。</p>
 <p><span>2.3.5</span>應用</p>
 <p>可以使用“文件”選項打開應用程序位於主窗口的左上角或功能區欄上方的“應用程序”選項卡。 您可以選擇要運行的應用程序類型。對於例如，您可以選擇“建模”，“製圖”組裝，如圖所示。 打開您的計算機時啟動的默認應用程序文件或開始新文件的是<span>Modeling</span>。 接下來，我們將介紹其中一些應用程序章節。</p>
-<p><img alt="" height="45" src="/images/29.png" width="500"/></p>
+<p><img alt="" height="45" src="./../images/29.png" width="500"/></p>
 <p><span>2.4</span>層</p>
 <p>圖層用於將對象存儲在文件中，並像容器一樣工作以將對象收集到文件中。有條理和一致的方式。 與簡單的視覺工具（例如顯示和隱藏）不同，圖層提供一種永久的方式來組織和管理文件中對象的可見性和選擇性。</p>
 <p><span>2.4.1</span>圖層控制</p>
@@ -265,7 +356,7 @@
 <p>對象及其所在層的狀態。</p>
 <p>要將狀態分配給一個或多個圖層，</p>
 <p>➢選擇查看→圖層設置</p>
-<p><img alt="" height="445" src="/images/30.png" width="198"/></p>
+<p><img alt="" height="445" src="./../images/30.png" width="198"/></p>
 <p>但是，應該注意的是，在關於文件之間層將有利於保持一致性。</p>
 <p><span>2.4.2</span>分層命令</p>
 <p>我們將按照簡單的步驟來練習“層”中的命令。 首先，我們將創建兩個對象</p>
@@ -273,8 +364,8 @@
 <p>➢選擇文件→新建</p>
 <p>命名文件並選擇要在其中保存文件的文件夾。確保在下拉菜單中選擇單位為毫米。 選擇文件類型作為模型</p>
 <p>➢選擇菜單→插入→設計特徵→圓錐</p>
-<p><img alt="" height="356" src="/images/31.png" width="239"/></p>
-<p><img alt="" height="152" src="/images/32.png" width="242"/></p>
+<p><img alt="" height="356" src="./../images/31.png" width="239"/></p>
+<p><img alt="" height="152" src="./../images/32.png" width="242"/></p>
 <p>➢在類型下選擇直徑和高度</p>
 <p>➢點擊確定</p>
 <p><span>➢</span>右鍵單擊屏幕，然後選擇“右側視圖” 三座標</p>
@@ -284,32 +375,32 @@
 <p>➢選擇查看→移動到圖層，系統將要求您選擇一個對象</p>
 <p>➢將光標移到圓錐上並單擊，使其突出顯示</p>
 <p>➢點擊確定</p>
-<p><img alt="" height="283" src="/images/33.png" width="425"/></p>
+<p><img alt="" height="283" src="./../images/33.png" width="425"/></p>
 <p>在窗口頂部的“目標層”或“類別”空間中，鍵入<span>25</span>並單擊“確定”。</p>
 <p>圓錐現在已經到達第<span>25</span>層。 它不再是在第<span>1</span>層中看到。</p>
 <p>➢要查看圓錐體，請單擊查看→圖層設置</p>
-<p><img alt="" height="377" src="/images/34.png" width="211"/></p>
+<p><img alt="" height="377" src="./../images/34.png" width="211"/></p>
 <p>➢您可以看到第<span>25</span>層有對象，而默認的工作層<span>1</span>沒有對象。</p>
 <p>錐體將再次出現在屏幕上。 保存文件，因為我們</p>
 <p>將在本教程的後面部分中使用它。</p>
-<p><img alt="" height="242" src="/images/35.png" width="312"/></p>
+<p><img alt="" height="242" src="./../images/35.png" width="312"/></p>
 <p><span>2.5</span>協調系統</p>
 <p><span>NX</span>中有不同的坐標系。 三軸符號用於標識坐標系。</p>
 <p><span>2.5.1</span>絕對坐標系</p>
 <p>絕對坐標係是從所有對像都被引用。 這是一個固定的坐標系，<span>NX 12</span>建模空間中每個對象的位置和方向是與這個系統有關。 絕對坐標系（或絕對<span>CSYS</span>）還提供了通用的參考框架零件文件。 一個零件文件中<span>X = 1</span>，<span>Y = 1</span>和<span>Z = 1</span>的絕對位置是其他零件文件中的相同位置。</p>
-<p><img alt="" height="155" src="/images/36.png" width="169"/></p>
+<p><img alt="" height="155" src="./../images/36.png" width="169"/></p>
 <p>圖形窗口左下角的<span>View Triad</span>僅是視覺對象代表絕對坐標系方向的指示器模型。</p>
-<p><img alt="" height="94" src="/images/37.png" width="107"/></p>
+<p><img alt="" height="94" src="./../images/37.png" width="107"/></p>
 <p><span>2.5.2</span>工作坐標系</p>
 <p>工作坐標系（<span>WCS</span>）是您要用於構造時要使用的確定特徵的方向和角度。<span> WCS</span>的軸表示為<span>XC</span>，<span>YC</span>和<span>ZC</span>。（“<span> C</span>”代表“當前”）。 它可能有多個坐標零件文件中的系統，但其中只有一個可以是工作坐標系。</p>
 <p><span>2.5.3</span>移動<span>WCS</span></p>
 <p>在這裡，您將學習如何翻轉和旋轉<span>WCS</span>。</p>
 <p>➢選擇菜單→格式→<span>WCS</span></p>
-<p><span><img alt="" height="350" src="/images/38.png" width="344"/></span></p>
+<p><span><img alt="" height="350" src="./../images/38.png" width="344"/></span></p>
 <p><span>2.5.3.1</span>轉換<span>WCS</span></p>
 <p>此過程將移動<span>WCS</span>原點到您指定的任何位置，但<span>WCS</span>的方向（軸的方向）將保持不變。</p>
 <p>➢選擇菜單→格式→<span>WCS</span>→原點</p>
-<p><img alt="" height="347" src="/images/39.png" width="244"/></p>
+<p><img alt="" height="347" src="./../images/39.png" width="244"/></p>
 <p>顯示“構造器”對話框。 你可以從頂部的下拉菜單中指定一個點對話框或在<span>XC</span>，<span>YC</span>，和<span>ZC</span>字段。大部分工作將與工作有關坐標系而不是絕對坐標系統。 默認為<span>WCS</span>。</p>
 <p><span>2.5.3.2</span>旋轉<span>WCS</span></p>
 <p>您還可以圍繞其軸線之一旋轉<span>WCS</span>。</p>
@@ -319,15 +410,56 @@
 <p>➢選擇菜單→格式→<span>WCS</span>→保存</p>
 <p><span>2.6</span>工具欄</p>
 <p>工具欄包含圖標，可作為許多功能的快捷方式。右圖正常顯示了工具欄的主要項目顯示。但是，您可以找到更多不同圖標功能命令，基於所選模塊以及模塊是如何定制的。</p>
-<p><img alt="" height="432" src="/images/40.png" width="181"/></p>
+<p><img alt="" height="432" src="./../images/40.png" width="181"/></p>
 <p>右鍵單擊現有工具欄上的任何位置，將提供其他工具欄的列表。 您可以通過選擇添加任何工具欄。</p>
 <p>通常，默認設置對於大多數操作應該足夠了，但是在某些操作期間，可能需要其他工具欄。 如果要添加與命令和工具欄有關的按鈕</p>
 <p>➢單擊任何工具欄上的下拉箭頭，然後選擇“自定義”</p>
-<p><img alt="" height="200" src="/images/41.png" width="627"/></p>
+<p><img alt="" height="200" src="./../images/41.png" width="627"/></p>
 <p>這將彈出“自定義”對話框窗口，其中包含“命令”選項卡下所有與每個工具欄有關的工具欄和命令。 要添加命令</p>
 <p>➢選擇一個類別並將命令從“命令”列表中拖動到所需的位置</p>
-<p><img alt="" height="344" src="/images/42.png" width="322"/></p>
+<p><img alt="" height="344" src="./../images/42.png" width="322"/></p>
 <p>您可以通過以下方式自定義<span>NX 12</span>界面的設置單擊資源欄上的“角色”選項卡。角色選項卡具有工具欄菜單的不同設置顯示在<span>NX 12</span>界面上。 它可以讓你自定義您希望在工具欄中顯示的工具欄接口。</p>
-<p><img alt="" height="387" src="/images/43.png" width="242"/></p>
-<h1>NX12繪製自走車</h1>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/r8RsZEwgUGE" width="560"></iframe></p>
+<p><img alt="" height="387" src="./../images/43.png" width="242"/></p>
+<br />繪圖認證範例 << <a href='繪圖認證範例.html'>Previous</a> <a href='NX12繪製自走車.html'>Next</a> >> NX12繪製自走車</div>
+        
+    <!-- footer -->
+      <div class="container">
+        <div class="row pt-3 mx-auto">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+      </div>
+    <!-- for footer -->
+    
+        </div> <!-- for site wrap -->
+            <!-- <script src="../cmsimde/static/chimper/js/jquery-3.3.1.min.js"></script> -->
+            <script src="../cmsimde/static/chimper/js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery-ui.js"></script>
+            <script src="../cmsimde/static/chimper/js/popper.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/owl.carousel.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.stellar.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.countdown.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.magnific-popup.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap-datepicker.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/aos.js"></script>
+            <!--
+            <script src="../cmsimde/static/chimper/js/typed.js"></script>
+                    <script>
+                    var typed = new Typed('.typed-words', {
+                    strings: ["Web Apps"," WordPress"," Mobile Apps"],
+                    typeSpeed: 80,
+                    backSpeed: 80,
+                    backDelay: 4000,
+                    startDelay: 1000,
+                    loop: true,
+                    showCursor: true
+                    });
+                    </script>
+            -->
+            <script src="../cmsimde/static/chimper/js/main.js"></script>
+        </body></html>
+        
