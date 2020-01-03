@@ -335,7 +335,8 @@
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/PgA1At_zcDo" width="560"></iframe></p>
 <h1>W16</h1>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/Yrq6iYJ_KFk" width="560"></iframe></p>
-<br/><br/><br/><br/>W17 
+<p><br/><br/><br/><br/><br/></p>
+<h1>W17協同</h1>
 <p><br/>建構乾淨的模型教程<strong>Building a clean model tutorial</strong></p>
 <p>This tutorial will guide you step-by-step into building a clean simulation model, of a robot, or any other item. This is a very important topic, maybe the most important aspect, in order to have a nice looking, fast displaying, fast simulating and stable simulation model.</p>
 <p>本教程將指導您逐步建構機器人或任何其他項目的清晰仿真模型。為了具有美觀，快速顯示，快速仿真和穩定的仿真模型，這是一個非常重要的主題，也許是最重要的方面。</p>
@@ -346,7 +347,7 @@
 <p>建立可見的形狀Building the visible shapes</p>
 <p>When building a new model, first, we handle only the visual aspect of it: the dynamic aspect (its undelying even more simplified/optimized model), joints, sensors, etc. will be handled at a later stage.</p>
 <p>在構建新模型時，首先，我們僅處理它的視覺方面：動態方面（其簡化，優化模型的不合理之處），關節，傳感器等將在以後階段進行處理。</p>
-<p>We could now directly create primitive shapes in CoppeliaSim with [Menu bar --&gt; Add --&gt; Primitive shape --&gt; ...]. When doing this, we have the option to create pure shapes, or regular shapes. Pure shape will be optimized for dynamic interaction, and also directly be dynamically enabled (i.e. fall, collide, but this can be disabled at a later stage). Primitive shapes will be simple meshes, which might not contain enough details or geometric accuracy for our application. Our other option in that case would be to import a mesh from an external application.</p>
+<p>We could now directly create primitive shapes in CoppeliaSim with [Menu bar --&gt; Add --&gt; Primitive shape --&gt; ...]. When doing this, we have the option to create <a href="http://www.coppeliarobotics.com/helpFiles/en/shapes.htm">pure shapes, or regular shapes</a>. Pure shape will be optimized for dynamic interaction, and also directly be dynamically enabled (i.e. fall, collide, but this can be disabled at a later stage). Primitive shapes will be simple meshes, which might not contain enough details or geometric accuracy for our application. Our other option in that case would be to import a mesh from an external application.</p>
 <p>現在，我們可以使用<span>[</span>菜單欄<span>-&gt;</span>添加<span>-&gt;</span>基本形狀<span>-&gt; ...]</span>在<span>CoppeliaSim</span>中直接創建基本形狀。這樣做時，我們可以選擇創建純形狀或常規形狀。純形狀將針對動態交互進行優化，也可以直接動態啟用（例如，跌落，碰撞，但可以在以後禁用）。基本形狀將是簡單的網格，對於我們的應用程序，可能沒有足夠的細節或幾何精度。在這種情況下，我們的另一個選擇是從外部應用程序導入網格。</p>
 <p>When importing CAD data from an external application, the most important is to make sure that the CAD model is not too heavy, i.e. doesn't contain too many triangles. This requirement is important since a heavy model will be slow in display, and also slow down various calculation modules that might be used at a later stage (e.g. minimum distance calculation, or dynamics). Following example is typically a no-go (even if, as we will see later, there are means to simplify the data within CoppeliaSim):</p>
 <p>從外部應用程序導入<span>CAD</span>數據時，最重要的是確保<span>CAD</span>模型不會太複雜，即不包含太多三角形。這項要求很重要，因為重型模型的顯示速度會很慢，並且還會減慢以後可能使用的各種計算模塊（例如最小距離計算或動力學）。以下示例通常是不可行的（即使我們會在後面看到，即使有方法可以簡化<span>CoppeliaSim</span>中的數據）：</p>
