@@ -39,15 +39,15 @@ CMSimfly 網際內容管理
 <div class="slides">
 <section data-markdown>
     <script type="text/template">
-## CMSimfly 網際內容管理
+## S40723111
 
-### KMOLab
+### CAD2019個人簡報
 
 <small>
-Created by [KMOLab](http://lab.kmol.info/)
+Created by [40723111](https://github.com/s40723111/cad2019)
 </small>
 
-[CMSimfly 網誌](./../blog/index.html)
+[CAD2019 網誌](./../blog/index.html)
 
 
     </script>
@@ -57,85 +57,134 @@ Created by [KMOLab](http://lab.kmol.info/)
 						
 <section data-markdown>
     <script type="text/template">
-# 投影片快捷鍵
+# 本學期完成課程
 
-* 利用箭頭上下前後換頁
-* 按 f 鍵進入全螢幕模式 (full screen)
-* 按 s 鍵可以顯示投影片筆記 (show)
-* 按 o 鍵可以切換單張或全域檢視 (overview)
-* 按 b 或 . 鍵可以切換螢幕黑屏 (black)
-* 按 Esc 可以退出全螢幕或全域檢視 (Escape)
+* 編譯Solvespace
+* 使用solvespace繪圖
+* V-rep雙輪車控制模擬
+* 原文書翻譯 
+* Solvespace導入V-rep
+* V-rep設定參數使其移動
 
     </script>
 </section>
-
-
-						
-<section>
-<section data-markdown>
-    <script type="text/template">
-<!-- 請注意, @others 不可以內縮 -->
-# 數學符號與方程式
-
-Inline math equations go in like so: $\omega = d\phi / dt$. Display
-math should get its own line and be put in in double-dollarsigns:
-
-$$I = \int \rho R^{2} dV$$
-    </script>
-</section>
-
 
 
 						
 <section data-markdown>
     <script type="text/template">
-<!-- 請注意, @others 不可以內縮 -->
-## 利用 Markdown 寫投影片
-以下利用 Markdown 格式展示 Python 程式碼:
-```
-# use threading and subprocess to threading the make process
-import os
-import subprocess
-import threading
+# Solvespace
 
-def domake():
-    
-    path = "../exposed/api/exposed"
-    ubuntu = "../Ubuntu"
-    
-    # create obj path
-    
-    if not os.path.exists(path+"/../obj"):
-        os.makedirs(path+"/../obj")
-    
-    subprocess.call(["make", "clean"], cwd=path)
-    subprocess.call("make", cwd=path)
-    subprocess.call(["cp", "{libslvs.so, _slvs.so, slvs.py}", ubuntu], cwd=path)
-    subprocess.call(["python3", "circle_ex.py"], cwd=path+"/"+ubuntu)
-    
-make = threading.Thread(target=domake)
-make.start()
-```
+編譯Solvespace
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eGKps_pklxc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						
     </script>
 </section>
-
 
 
 						
 <section data-markdown>
     <script type="text/template">
-## 使用 iframe 導入影片
+# Solvespace
 
-### 導入影片 template
+about加入學號
 
-<iframe src="https://player.vimeo.com/video/183950627" width="640" height="492" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2IEFfRoR1wA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						
     </script>
 </section>
 
 
 						
+<section data-markdown>
+    <script type="text/template">
+# Solvespace
+
+繪圖練習
+
+<iframe width="400" height="330" src="https://www.youtube.com/embed/cMQQ4rD_YRY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						
+<iframe width="400" height="330" src="https://www.youtube.com/embed/zCGpQ22g9MY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </script>
 </section>
 
+
+						
+<section data-markdown>
+    <script type="text/template">
+# V-rep
+
+雙輪車控制模擬
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XKvrybYpZ_A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </script>
+</section>
+
+
+						
+<section data-markdown>
+    <script type="text/template">
+# Solvespace
+
+繪圖認證範例
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3CUc2zFI-aw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </script>
+</section>
+
+
+						
+<section data-markdown>
+    <script type="text/template">
+# 原文書翻譯
+
+
+
+### [NX 12 for Engineering Design](https://s40723111.github.io/cad2019/content/NX12%E7%BF%BB%E8%AD%AF.html)
+
+### [Building a clean model tutorial](https://s40723111.github.io/cad2019/content/%E7%BF%BB%E8%AD%AF.html)
+    </script>
+</section>
+
+
+						
+<section data-markdown>
+    <script type="text/template">
+# NX12繪圖
+
+利用NX12繪製簡易自走車
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/r8RsZEwgUGE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </script>
+</section>
+
+
+						
+<section data-markdown>
+    <script type="text/template">
+## V-rep
+
+繪製solvespace並將零件導入V-rep(W16)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Yrq6iYJ_KFk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </script>
+</section>
+
+
+						
+<section data-markdown>
+    <script type="text/template">
+## V-rep
+
+導入零件使車子移動(W17)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EMivR2bg4N8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </script>
+</section>
+
+
+						
 </div>
 
 </div>
